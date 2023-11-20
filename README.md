@@ -1,1 +1,1 @@
-# news-example
+# Simple Project Example News Website
