@@ -1,6 +1,6 @@
-fetch("https://newsapi.org/v2/everything?q=tesla&from=2023-10-20&sortBy=publishedAt&apiKey=c552b686cb304c86b9dedcf4b723e4f4&pageSize=4")
+fetch("http://localhost:3000/articles")
 .then(res => res.json())
-.then(data => renderDataToContent(data.articles));
+.then(data => renderDataToContent(data));
 
 function renderDataToContent(articles){
     // get element content
@@ -10,7 +10,7 @@ function renderDataToContent(articles){
         console.log(article);
         content.innerHTML+=`<div class="card" id=${id}>
     <div class="thumb">
-        <img src=${article.urlToImage} alt="">
+        <img src=${article.urlImage} alt="">
     </div>
     <div class="title">
         <a onclick="redirectToDetail(${id})">${article.title}</a>
@@ -26,3 +26,42 @@ function redirectToDetail(newsId) {
     // You can use window.location.href to redirect to the detail page
     window.location.href = 'detail.html?id=' + newsId;
 }
+
+
+function postContactUs(event){
+    event.preventDefault();
+    console.log("test");
+    // Ambil data dari form
+    // const formBox = document.querySelector('.formbox');
+    const form = event.target;
+    const name = form.querySelector('[name="name"]').value;
+    const email = form.querySelector('[name="email"]').value;
+    const message = form.querySelector('[name="message"]').value;
+
+    // simpan ke dalam object javascript
+    const data = {
+        name: name,
+        email: email,
+        message: message
+      };
+
+    // post ke BE
+    fetch('http://localhost:3000/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        form.reset();
+        alert(data.message);
+    });
+
+}
+
+document.querySelector(".contact-us form")
+.addEventListener("submit", postContactUs);
+

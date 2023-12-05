@@ -83,3 +83,40 @@ footer{
     display: flex;
 }
 
+.contact-us{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    flex-direction: column;
+}
+
+.contact-us form{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-us form input,
+.contact-us form textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid rgb(18, 32, 27);
+  border-radius: 5px;
+  padding: 5px 5px 20px 5px;
+  margin-top: 10px;
+}
+
+.contact-us form button{
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 100px;
+  border: none;
+  background-color: blue;
+  color: white;
+  box-shadow: 2px 2px 5px rgb(117, 117, 117);
+  cursor: pointer;
+  margin-top: 10px;
+}
